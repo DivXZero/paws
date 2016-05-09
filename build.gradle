@@ -23,15 +23,18 @@ model {
       sources {
         cpp {
           source {
-            srcDir 'src/app'
+            srcDir 'components/src/app'
           } /* source */
+          exportedHeaders {
+            srcDir 'components/include/app'
+          }
           lib library: "paws_core"
         } /* cpp */
       } /* sources */
       binaries.all {
         if(targetPlatform.operatingSystem.windows) {
           if(toolChain in VisualCpp) {
-            cppCompiler.args '/EHsc'
+            cppCompiler.args '/EHsc', '/O2'
             linker.args '-mwindows', '/SUBSYSTEM:windows', '/ENTRY:mainCRTStartup'
           }
         }
@@ -42,8 +45,11 @@ model {
       sources {
         cpp {
           source {
-            srcDir 'src/core'
+            srcDir 'components/src/core'
           } /* source */
+          exportedHeaders {
+            srcDir 'components/include/core'
+          }
         } /* cpp */
       } /* sources */
     } /* paws_core */
@@ -53,7 +59,7 @@ model {
       sources {
         cpp {
           exportedHeaders {
-            srcDir 'src'
+            srcDir 'components/include'
           }
         } /* cpp */
       } /* sources */
