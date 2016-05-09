@@ -54,6 +54,20 @@ model {
       } /* sources */
     } /* paws_core */
 
+    paws_web_core(NativeLibrarySpec) {
+      sources {
+        cpp {
+          source {
+            srcDir 'components/src/web_core'
+          } /* source */
+          exportedHeaders {
+            srcDir 'components/include/web_core'
+          }
+          lib library: "paws_core"
+        } /* cpp */
+      } /* sources */
+    } /* paws_web_core */
+
     all {
       targetPlatform 'windows_x86'
       sources {

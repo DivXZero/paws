@@ -4,8 +4,6 @@
 
 #include "common.h"
 
-extern "C" {
-  __declspec(dllexport) int DoSomething();
-}
+#include "window/window.h"
 
 #endif  // __PAWS_CORE_H
