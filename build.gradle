@@ -1,0 +1,32 @@
+apply plugin: 'cpp'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.13'
+}
+
+model {
+
+  platforms {
+    windows_x86 {
+      architecture 'x86'
+      operatingSystem 'windows'
+    } /* windows_x86 */
+  } /* platforms */
+
+  toolChains {
+    visualCpp(VisualCpp)
+  } /* toolChains */
+
+  components {
+    core(NativeLibrarySpec) {
+      targetPlatform 'windows_x86'
+      sources {
+        cpp {
+          source {
+            srcDir 'src/core'
+          } /* source */
+        } /* cpp */
+      } /* sources */
+    } /* core */
+  } /* components */
+} /* model */
