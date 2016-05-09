@@ -2,6 +2,10 @@
 #ifndef __PAWS_CORE_H
 #define __PAWS_CORE_H
 
+extern "C" {
+  __declspec(dllexport) int DoSomething();
+}
+
 /*
 *   Common Includes
 */

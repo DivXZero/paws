@@ -18,8 +18,27 @@ model {
   } /* toolChains */
 
   components {
-    core(NativeLibrarySpec) {
-      targetPlatform 'windows_x86'
+
+    paws_app(NativeExecutableSpec) {
+      sources {
+        cpp {
+          source {
+            srcDir 'src/app'
+          } /* source */
+          lib library: "paws_core"
+        } /* cpp */
+      } /* sources */
+      binaries.all {
+        if(targetPlatform.operatingSystem.windows) {
+          if(toolChain in VisualCpp) {
+            cppCompiler.args '/EHsc'
+            linker.args '-mwindows', '/SUBSYSTEM:windows', '/ENTRY:mainCRTStartup'
+          }
+        }
+      } /* binaries */
+    } /* paws_app */
+
+    paws_core(NativeLibrarySpec) {
       sources {
         cpp {
           source {
@@ -27,6 +46,18 @@ model {
           } /* source */
         } /* cpp */
       } /* sources */
-    } /* core */
+    } /* paws_core */
+
+    all {
+      targetPlatform 'windows_x86'
+      sources {
+        cpp {
+          exportedHeaders {
+            srcDir 'src'
+          }
+        } /* cpp */
+      } /* sources */
+    } /* all */
+
   } /* components */
 } /* model */
