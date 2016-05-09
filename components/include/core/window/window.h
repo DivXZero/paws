@@ -11,18 +11,21 @@
 #endif
 
 namespace Paws {
-/*
+
   #ifdef _WIN32
-  using WindowPtr = std::shared_ptr<Win32Window>;
   using WindowRaw = Win32Window;
   #elif __linux__
-  using WindowPtr = std::shared_ptr<XWindow>;
   using WindowRaw = XWindow;
   #endif
-*/
+
+  using WindowPtr = std::shared_ptr<WindowRaw>;
+
   LIB_EXPORT
   class Window : public Shared::Window {
-    void create() {}
+    void Create() {}
+
+  private:
+    WindowPtr m_window;
   };
 
 }

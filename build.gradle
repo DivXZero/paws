@@ -35,7 +35,6 @@ model {
         if(targetPlatform.operatingSystem.windows) {
           if(toolChain in VisualCpp) {
             cppCompiler.args '/EHsc', '/O2'
-            linker.args '-mwindows', '/SUBSYSTEM:windows', '/ENTRY:mainCRTStartup'
           }
         }
       } /* binaries */
